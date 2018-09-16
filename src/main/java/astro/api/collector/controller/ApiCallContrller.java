@@ -7,9 +7,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ApiCallContrller {
 
-    @GetMapping("/api")
+    @GetMapping("/")
+    public String helloWorld() {
+        return "Hello Spring World !!";
+    }
+
+    @GetMapping("/weather")
     public String weather() {
-        WeatherApi tester = new WeatherApi();
-        return tester.call();
+        WeatherApi weather = new WeatherApi();
+
+        // connector 통해서 전송
+
+        //
+
+        String result = "send success";
+        return weather.call();
     }
 }
