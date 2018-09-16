@@ -1,10 +1,10 @@
-package astro.api.collector.weather;
+package astro.api.collector.api;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-public class ApiTester {
+public class WeatherApi {
 
     public String call() {
         try {

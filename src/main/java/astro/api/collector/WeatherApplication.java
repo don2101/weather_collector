@@ -1,4 +1,4 @@
-package astro.api.collector.weather;
+package astro.api.collector;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

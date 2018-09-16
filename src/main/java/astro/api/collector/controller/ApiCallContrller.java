@@ -1,6 +1,6 @@
-package astro.api.collector.weather.controller;
+package astro.api.collector.controller;
 
-import astro.api.collector.weather.ApiTester;
+import astro.api.collector.api.WeatherApi;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,7 +9,7 @@ public class ApiCallContrller {
 
     @GetMapping("/api")
     public String weather() {
-        ApiTester tester = new ApiTester();
+        WeatherApi tester = new WeatherApi();
         return tester.call();
     }
 }
