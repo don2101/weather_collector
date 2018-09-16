@@ -6,9 +6,14 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 
 public class WeatherApi implements ApiInterface {
 
-    private String url = "http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1159068000";
+    private String url = "http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1154561000";
 
     public String call() {
+        String responseBody = this.request();
+        return this.parse(responseBody);
+    }
+
+    public String request() {
 
         try {
             HttpResponse<String> response = HttpManager.getResponse(url);
@@ -16,7 +21,11 @@ public class WeatherApi implements ApiInterface {
             return response.getBody();
         } catch (UnirestException e) {
             e.printStackTrace();
-            return "api call failed";
+            return "api request failed";
         }
+    }
+
+    public String parse(String responseBody) {
+        return responseBody;
     }
 }
