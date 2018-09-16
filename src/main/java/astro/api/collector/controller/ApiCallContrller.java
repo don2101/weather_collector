@@ -19,13 +19,14 @@ public class ApiCallContrller {
 
     @GetMapping("/weather")
     public String weather() {
+        String topic = "weather";
+
         WeatherApi weather = new WeatherApi();
-        String result = weather.call();
+        String message = weather.call();
 
         // connector 통해서 전송
+        sender.send(topic, message);
 
-        //
-
-        return result;
+        return message;
     }
 }

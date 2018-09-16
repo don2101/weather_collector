@@ -5,13 +5,13 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class GrpcSender {
-    private ClientSdk clientSdk ;
+    private ClientSdk clientSdk;
 
 
     public GrpcSender() {
-        /*clientSdk = ClientSdk.astroConnectorbuilder.setHost("localhost")
-                                                   .setPort("8082")
-                                                   .build();*/
+        clientSdk = new ClientSdk.ClientSdkBuilder().setHost("localhost")
+                                                    .setPort(8082)
+                                                    .build();
 
         clientSdk.init();
     }
