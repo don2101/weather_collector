@@ -12,8 +12,6 @@ public class GrpcSender {
         clientSdk = new ClientSdk.ClientSdkBuilder().setHost("localhost")
                                                     .setPort(8082)
                                                     .build();
-
-        clientSdk.init();
     }
 
     public void send(String topic, String message) {

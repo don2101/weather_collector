@@ -29,4 +29,9 @@ public class ApiCallContrller {
 
         return message;
     }
+
+    @GetMapping("/tranportation")
+    public String transportation() {
+        return null;
+    }
 }
