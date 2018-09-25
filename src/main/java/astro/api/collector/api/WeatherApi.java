@@ -14,7 +14,6 @@ public class WeatherApi implements ApiInterface {
     }
 
     public String request() {
-
         try {
             HttpResponse<String> response = HttpManager.getResponse(url);
 
