@@ -12,20 +12,29 @@ import org.springframework.web.bind.annotation.RestController;
 public class ApiCallContrller {
 
     @Autowired
-    private static GrpcSender sender;
+    private GrpcSender sender;
 
     @GetMapping("/")
     public String helloWorld() {
-        return "Hello Spring World !!";
-    }
-
-    public static String weather() {
+        log.info("call start");
         String topic = "weather";
 
         WeatherApi weather = new WeatherApi();
         String message = weather.call();
 
-        log.info("message check : {}", message);
+        // connector 통해서 전송
+        sender.send(topic, message);
+
+        return message;
+    }
+
+    public String weather() {
+        String topic = "weather";
+
+        WeatherApi weather = new WeatherApi();
+        String message = weather.call();
+
+        log.debug("message check : {}", message);
 
         // connector 통해서 전송
         sender.send(topic, message);
