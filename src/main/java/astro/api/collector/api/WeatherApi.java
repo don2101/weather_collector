@@ -3,6 +3,7 @@ package astro.api.collector.api;
 import astro.api.collector.common.HttpManager;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -36,8 +37,8 @@ public class WeatherApi implements ApiInterface {
     }
 
     public String parse(String responseBody) {
-        String message = "";
         InputSource inputSource = new InputSource(new StringReader(responseBody));
+        JSONObject jsonObject = new JSONObject();
 
         try {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -47,7 +48,7 @@ public class WeatherApi implements ApiInterface {
             NodeList dataList = document.getElementsByTagName("data");
 
             /* 전체 데이터 전송
-            for(int i = 0; i < dataList.getLength(); ++i) {
+            for(int i = 0; i < DataList.getLength(); ++i) {
                 Node data = dataList.item(i);
                 NodeList weatherDataList = data.getChildNodes();
 
@@ -59,12 +60,13 @@ public class WeatherApi implements ApiInterface {
             }*/
 
             Node data = dataList.item(0);
-
             NodeList weatherDataList = data.getChildNodes();
+
             for(int i = 0; i < weatherDataList.getLength(); ++i) {
                 Node weatherData = weatherDataList.item(i);
-                message += weatherData.getTextContent();
+                jsonObject.put(weatherData.getNodeName(), weatherData.getTextContent());
             }
+
 
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
@@ -75,6 +77,6 @@ public class WeatherApi implements ApiInterface {
         }
 
 
-        return message;
+        return jsonObject.toString(1);
     }
 }
