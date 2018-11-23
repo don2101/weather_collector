@@ -16,18 +16,11 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.StringReader;
 
-public class WeatherApi implements ApiInterface {
-
-    private String url = "http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=1154561000";
-
-    public String call() {
-        String responseBody = this.request();
-        return this.parse(responseBody);
-    }
-
-    public String request() {
+public class ApiProcessor implements ApiInterface {
+    @Override
+    public String request(String requestURL) {
         try {
-            HttpResponse<String> response = HttpManager.getResponse(url);
+            HttpResponse<String> response = HttpManager.getResponse(requestURL);
 
             return response.getBody();
         } catch (UnirestException e) {
@@ -36,6 +29,7 @@ public class WeatherApi implements ApiInterface {
         }
     }
 
+    @Override
     public String parse(String responseBody) {
         InputSource inputSource = new InputSource(new StringReader(responseBody));
         JSONObject jsonObject = new JSONObject();
@@ -78,5 +72,11 @@ public class WeatherApi implements ApiInterface {
 
 
         return jsonObject.toString(1);
+    }
+
+    @Override
+    public String call(String requestURL) {
+        String responseBody = this.request(requestURL);
+        return this.parse(responseBody);
     }
 }

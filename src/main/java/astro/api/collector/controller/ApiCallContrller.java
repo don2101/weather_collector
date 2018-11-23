@@ -1,6 +1,7 @@
 package astro.api.collector.controller;
 
-import astro.api.collector.api.WeatherApi;
+import astro.api.collector.api.ApiConfig;
+import astro.api.collector.api.ApiProcessor;
 import astro.api.collector.common.GrpcSender;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,12 @@ public class ApiCallContrller {
     @Autowired
     private GrpcSender sender;
 
-    @GetMapping("/")
+    private ApiConfig apiConfig = new ApiConfig();
+
+    private ApiProcessor apiProcessor = new ApiProcessor();
+
+
+/*    @GetMapping("/")
     public String helloWorld() {
         log.info("call start");
         String topic = "weather";
@@ -26,13 +32,19 @@ public class ApiCallContrller {
         sender.send(topic, message);
 
         return message;
-    }
+    }*/
 
+    @GetMapping("/weather")
     public String weather() {
         String topic = "weather";
 
-        WeatherApi weather = new WeatherApi();
-        String message = weather.call();
+        apiConfig.loadProperties(topic+".properties");
+
+        String url = apiConfig.makeUrl()
+                              .concat(apiConfig.get("tag.name"))
+                              .concat(apiConfig.get("seoul.mapo.yonnam"));
+
+        String message = apiProcessor.call(url);
 
         log.debug("message check : {}", message);
 
