@@ -12,6 +12,11 @@ public class AstroCrallwerDaoImpl implements AstroCrallwerDao {
     private AstroDataSourcePool dataSourcePool = new AstroDataSourcePool();
 
     @Override
+    public void connectionTest() {
+        dataSourcePool.select("AstroCrallwerMapper.connectionTest",null);
+    }
+
+    @Override
     public void createTable() {
 
     }

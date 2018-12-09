@@ -6,6 +6,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * 관점 분리해 볼 것 --> astro.api.collector.common.AstrpProperties 로 properties 읽는 부분 옮겨봅시다
+ * 지금 이 클래스는 프로퍼티 읽는 부분 + url 살짝 핸들링하는 부분 섞여 있는 기분
+ * api 패키지에 있는것도 약간 불편함
+ */
 @Log4j
 public class ApiConfig {
     private String url;

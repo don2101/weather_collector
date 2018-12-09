@@ -1,13 +1,19 @@
 package astro.api.collector.dao;
 
+import astro.api.collector.common.AstroCrallwerProperties;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.tomcat.jdbc.pool.DataSource;
 
-import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author oringnam
@@ -24,20 +30,25 @@ public class AstroDataSourcePool {
     private DataSource dataSource;
     private SqlSessionFactory sqlSessionFactory;
 
-    public AstroDataSourcePool(String driverClassName, String url, String id, String pw) {
-        this.driverClassName = driverClassName;
-        this.url = url;
-        this.id = id;
-        this.pw = pw;
+    public AstroDataSourcePool() {
+        //    @Autowired
+        AstroCrallwerProperties astroCrallwerProperties = new AstroCrallwerProperties();
+
+        driverClassName = astroCrallwerProperties.getProperty("astro.api.crallwer.driverClassName");
+        url = astroCrallwerProperties.getProperty("astro.api.crallwer.url");
+        id = astroCrallwerProperties.getProperty("astro.api.crallwer.id");
+        pw = astroCrallwerProperties.getProperty("astro.api.crallwer.pw");
+
+        init();
     }
 
-    public SqlSession getSqlSession() throws SQLException {
+    public SqlSession getSqlSession() {
         sqlSessionFactory.getConfiguration()
                          .setDefaultStatementTimeout(600000);
-        return sqlSessionFactory.openSession(dataSource.getConnection());
+        return sqlSessionFactory.openSession(ExecutorType.SIMPLE, borrowConnection());
     }
 
-    @PostConstruct
+    //    @PostConstruct
     public void init() {
         dataSource = new DataSource();
         dataSource.setDriverClassName(driverClassName);
@@ -60,8 +71,54 @@ public class AstroDataSourcePool {
         dataSource.setConnectionProperties("socketTimeout=6000000");
         dataSource.setConnectionProperties("readTimeout=6000000");
 
+        createSqlSession();
 
+        initDisplay();
+    }
 
+    private void initDisplay() {
+        log.info("============= AstroDataSourcePool init =============");
+        log.info("datasource : {} ", dataSource.toString());
+        log.info("sqlSessionFactory : {}", sqlSessionFactory.toString());
+        log.info("====================================================");
+    }
+
+    private void createSqlSession() {
+        String resource = "mybatis-config.xml";
+        InputStream inputStream;
+
+        try {
+            inputStream = Resources.getResourceAsStream(resource);
+        } catch (IOException e) {
+            log.error("mybatis-config.xml read err : {}", e.getMessage());
+            return;
+        }
+
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        sqlSessionFactory = builder.build(inputStream);
+    }
+
+    public Connection borrowConnection() {
+        try {
+            return dataSource.getConnection();
+        } catch (SQLException e) {
+            try {
+                init();
+                return dataSource.getConnection();
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
+    public <T> List<T> select(String mapperName, Object param) {
+        SqlSession sqlSession = getSqlSession();
+        List<T> result = sqlSession.selectList(mapperName, param);
+        sqlSession.close();
+
+        return result;
 
     }
 }

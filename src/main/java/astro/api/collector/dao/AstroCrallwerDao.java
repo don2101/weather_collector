@@ -21,6 +21,9 @@ public interface AstroCrallwerDao {
      * - 환경 세팅
      * - rule 관리자 (추가, 제거)
      */
+    // connetion test
+    void connectionTest();
+
     // 초기 환경 세팅용
     void createTable();
 
