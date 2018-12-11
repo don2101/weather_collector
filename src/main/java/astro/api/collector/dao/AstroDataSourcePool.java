@@ -121,4 +121,10 @@ public class AstroDataSourcePool {
         return result;
 
     }
+
+    public Integer create(String mapperName) {
+        SqlSession sqlSession = getSqlSession();
+        Integer result = sqlSession.update(mapperName);
+        return result;
+    }
 }

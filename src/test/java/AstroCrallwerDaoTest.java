@@ -1,5 +1,6 @@
 import astro.api.collector.dao.AstroCrallwerDao;
 import astro.api.collector.dao.AstroCrallwerDaoImpl;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -8,14 +9,34 @@ import org.junit.Test;
  * blog : http://box0830.tistory.com/
  */
 public class AstroCrallwerDaoTest {
+    AstroCrallwerDao astroCrallwerDao;
+
+    @Before
+    public void daoCreator() {
+        astroCrallwerDao = new AstroCrallwerDaoImpl();
+    }
 
     /**
-     * Connection Test 진행 중... 다녀와서 마무리 할 것
+     * DB 연결
      */
     @Test
     public void a_connectionTest() {
-        AstroCrallwerDao astroCrallwerDao = new AstroCrallwerDaoImpl();
         astroCrallwerDao.connectionTest();
+    }
+
+    /**
+     * DB Talbe 생성
+     */
+    @Test
+    public void b_createTest() {
+        astroCrallwerDao.createTable();
+    }
+
+    /**
+     * DB Drop Test
+     */
+    @Test
+    public void c_dropTableTest() {
 
     }
 }

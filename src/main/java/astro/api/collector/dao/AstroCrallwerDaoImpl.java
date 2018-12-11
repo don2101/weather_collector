@@ -18,7 +18,7 @@ public class AstroCrallwerDaoImpl implements AstroCrallwerDao {
 
     @Override
     public void createTable() {
-
+        Integer result = dataSourcePool.create("AstroCrallwerMapper.createTable1");
     }
 
     @Override

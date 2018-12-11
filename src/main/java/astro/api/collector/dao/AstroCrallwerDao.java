@@ -20,6 +20,10 @@ public interface AstroCrallwerDao {
      * 운영 편의성 개선
      * - 환경 세팅
      * - rule 관리자 (추가, 제거)
+     *
+     * < DB 생성 쿼리는 직접 날릴 것 />
+     * CREATE DATABASE astro_crallwer
+     * DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
      */
     // connetion test
     void connectionTest();
