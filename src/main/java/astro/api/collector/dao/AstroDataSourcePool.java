@@ -30,8 +30,9 @@ public class AstroDataSourcePool {
     private DataSource dataSource;
     private SqlSessionFactory sqlSessionFactory;
 
+    private int timeout = 600000;
+
     public AstroDataSourcePool() {
-        //    @Autowired
         AstroCrallwerProperties astroCrallwerProperties = new AstroCrallwerProperties();
 
         driverClassName = astroCrallwerProperties.getProperty("astro.api.crallwer.driverClassName");
@@ -44,11 +45,15 @@ public class AstroDataSourcePool {
 
     public SqlSession getSqlSession() {
         sqlSessionFactory.getConfiguration()
-                         .setDefaultStatementTimeout(600000);
+                         .setDefaultStatementTimeout(timeout);
         return sqlSessionFactory.openSession(ExecutorType.SIMPLE, borrowConnection());
     }
 
-    //    @PostConstruct
+
+    /**
+     * ## datasource config info
+     * -- http://tomee.apache.org/datasource-config.html
+     */
     public void init() {
         dataSource = new DataSource();
         dataSource.setDriverClassName(driverClassName);
@@ -66,10 +71,10 @@ public class AstroDataSourcePool {
         dataSource.setDefaultAutoCommit(true);
         dataSource.setDefaultTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
 
-        dataSource.setConnectionProperties("connectionTimeout=6000000");
+        dataSource.setConnectionProperties("connectionTimeout=" + timeout);
         dataSource.setConnectionProperties("maxReconnects=5");
-        dataSource.setConnectionProperties("socketTimeout=6000000");
-        dataSource.setConnectionProperties("readTimeout=6000000");
+        dataSource.setConnectionProperties("socketTimeout=" + timeout);
+        dataSource.setConnectionProperties("readTimeout=" + timeout);
 
         createSqlSession();
 
@@ -77,10 +82,13 @@ public class AstroDataSourcePool {
     }
 
     private void initDisplay() {
-        log.info("============= AstroDataSourcePool init =============");
-        log.info("datasource : {} ", dataSource.toString());
-        log.info("sqlSessionFactory : {}", sqlSessionFactory.toString());
-        log.info("====================================================");
+        log.info("=============== AstroDataSourcePool init ===============");
+        log.info("driverClassName : {} ", dataSource.getDriverClassName());
+        log.info("db url : {} ", dataSource.getUrl());
+        log.info("user name : {} ", dataSource.getUsername());
+        log.info("datasource idle : {} ", dataSource.getIdle());
+        log.info("timeout : {} ", timeout);
+        log.info("========================================================");
     }
 
     private void createSqlSession() {
@@ -106,7 +114,7 @@ public class AstroDataSourcePool {
                 init();
                 return dataSource.getConnection();
             } catch (SQLException e1) {
-                e1.printStackTrace();
+                log.error("connection borrowing is failed : {}", e.getMessage());
             }
         }
 

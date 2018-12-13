@@ -1,3 +1,5 @@
+package unit;
+
 import astro.api.collector.dao.AstroCrallwerDao;
 import astro.api.collector.dao.AstroCrallwerDaoImpl;
 import org.junit.Before;
