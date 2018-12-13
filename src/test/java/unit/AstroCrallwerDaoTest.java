@@ -39,6 +39,6 @@ public class AstroCrallwerDaoTest {
      */
     @Test
     public void c_dropTableTest() {
-
+        astroCrallwerDao.dropTable();
     }
 }

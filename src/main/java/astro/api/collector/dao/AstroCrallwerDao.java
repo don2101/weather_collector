@@ -31,6 +31,9 @@ public interface AstroCrallwerDao {
     // 초기 환경 세팅용
     void createTable();
 
+    // Table drop
+    void dropTable();
+
     // 초기 환경 세팅용
     void insertInitialData();
 

@@ -6,7 +6,7 @@
       select 1;
     </select>
 
-    <select id="createTable1" resultType="int">
+    <select id="createTable" resultType="int">
 CREATE TABLE astro_crallwer.rule_meta
 (
     rule_name          VARCHAR(45)    NOT NULL    ,
@@ -23,6 +23,10 @@ CREATE TABLE astro_crallwer.api_info
     api_date_offset  INT             NULL        ,
     foreign key (rule_name) references astro_crallwer.rule_meta (rule_name) on update cascade on delete cascade
 );
+   </select>
+
+    <select id="dropTable" resultType="int">
+        drop table astro_crallwer.api_info,astro_crallwer.rule_meta;
    </select>
 
 </mapper>
