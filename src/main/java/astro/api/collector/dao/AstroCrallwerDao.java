@@ -49,10 +49,8 @@ public interface AstroCrallwerDao {
     void insertApiInfo(Map<String, Object> map);
 
     // rule_meta 테이블 row 제거
-    void deleteRuleMeta(String zone, String ruleName);
+    void deleteTableData(Map<String, Object> map);
 
-    // api_info 테이블 row 제거
-    void deleteApiInfo(String ruleName);
 
     /**
      * Schedule 동작 시 필요한 것

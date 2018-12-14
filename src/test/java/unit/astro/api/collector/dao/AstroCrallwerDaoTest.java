@@ -96,4 +96,12 @@ public class AstroCrallwerDaoTest {
 
         astroCrallwerDao.insertApiInfo(map);
     }
+
+    @Test
+    public void h_deleteTableTest() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("tableName", "astro_crallwer.api_info");
+
+        astroCrallwerDao.deleteTableData(map);
+    }
 }

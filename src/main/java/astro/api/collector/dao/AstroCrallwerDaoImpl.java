@@ -53,14 +53,10 @@ public class AstroCrallwerDaoImpl implements AstroCrallwerDao {
     }
 
     @Override
-    public void deleteRuleMeta(String zone, String ruleName) {
-
+    public void deleteTableData(Map<String, Object> map) {
+        Integer result = dataSourcePool.update("AstroCrallwerMapper.deleteTableData", map);
     }
 
-    @Override
-    public void deleteApiInfo(String ruleName) {
-
-    }
 
     @Override
     public AstroRuleMetaDomain selectRuleMeta(String zone) {

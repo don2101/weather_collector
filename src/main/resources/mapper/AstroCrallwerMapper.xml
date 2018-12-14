@@ -46,4 +46,9 @@ CREATE TABLE if not exists astro_crallwer.api_info
     <select id="insertApiInfo" resultType="int">
         insert into astro_crallwer.api_info values (#{ruleName}, #{apiUrl}, #{apiParameters}, #{apiHasDate}, #{apiDateOffset});
     </select>
+
+    <select id="deleteTableData" resultType="int">
+        delete from ${tableName};
+    </select>
+
 </mapper>
