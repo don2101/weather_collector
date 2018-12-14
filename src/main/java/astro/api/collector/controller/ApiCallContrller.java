@@ -63,7 +63,7 @@ public class ApiCallContrller {
     }
 
 
-    // TODO: api로 init
+    // TODO: api로 init 할때, 매번 dao 인스턴스 생성함 --> 안그랬으면 좋겠는뎅,,,
     @GetMapping("/init/db")
     public String initDb() {
         log.info("================ astro crallwer db init ================");
