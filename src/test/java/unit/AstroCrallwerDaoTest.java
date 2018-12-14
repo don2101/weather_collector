@@ -2,8 +2,12 @@ package unit;
 
 import astro.api.collector.dao.AstroCrallwerDao;
 import astro.api.collector.dao.AstroCrallwerDaoImpl;
+import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author oringnam
@@ -40,5 +44,21 @@ public class AstroCrallwerDaoTest {
     @Test
     public void c_dropTableTest() {
         astroCrallwerDao.dropTable();
+    }
+
+    @Test
+    public void d_insertIntiailTest() {
+        Map<String, Object> map = new HashMap<>();
+
+        DateTime dateTime = new DateTime();
+
+        map.put("regDatetime", dateTime.toString("yyyy-MM-dd hh:mm:ss.SSS"));
+
+        astroCrallwerDao.insertInitialTable(map);
+    }
+
+    @Test
+    public void e_deleteInitialTest() {
+        astroCrallwerDao.deleteInitialTable();
     }
 }

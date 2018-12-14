@@ -130,9 +130,9 @@ public class AstroDataSourcePool {
 
     }
 
-    public Integer update(String mapperName) {
+    public Integer update(String mapperName, Object param) {
         SqlSession sqlSession = getSqlSession();
-        Integer result = sqlSession.update(mapperName);
+        Integer result = sqlSession.update(mapperName, param);
         return result;
     }
 }

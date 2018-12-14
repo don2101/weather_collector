@@ -3,6 +3,8 @@ package astro.api.collector.dao;
 import astro.api.collector.domain.AstroApiInfoDomain;
 import astro.api.collector.domain.AstroRuleMetaDomain;
 
+import java.util.Map;
+
 /**
  * @author oringnam
  * @since 2018. 12. 8.
@@ -35,7 +37,10 @@ public interface AstroCrallwerDao {
     void dropTable();
 
     // 초기 환경 세팅용
-    void insertInitialData();
+    void insertInitialTable(Map<String, Object> map);
+
+    // db table 초기화용
+    void deleteInitialTable();
 
     // rule_meta 테이블 row 추가
     void insertRuleMeta(Object... args);

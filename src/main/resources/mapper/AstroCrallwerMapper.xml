@@ -23,10 +23,19 @@ CREATE TABLE astro_crallwer.api_info
     api_date_offset  INT             NULL        ,
     foreign key (rule_name) references astro_crallwer.rule_meta (rule_name) on update cascade on delete cascade
 );
-   </select>
+    </select>
 
     <select id="dropTable" resultType="int">
         drop table astro_crallwer.api_info,astro_crallwer.rule_meta;
-   </select>
+    </select>
 
+    <select id="insertInitialTable" resultType="int">
+        insert into astro_crallwer.rule_meta values ('api_weather', #{regDatetime});
+        insert into astro_crallwer.api_info values ('api_weather', 'http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=%s', '1144071000', 0, null );
+    </select>
+
+    <select id="deleteInitialTable" resultType="int">
+        delete from astro_crallwer.api_info;
+        delete from astro_crallwer.rule_meta;
+    </select>
 </mapper>

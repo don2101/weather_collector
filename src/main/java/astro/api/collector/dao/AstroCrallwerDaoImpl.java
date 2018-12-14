@@ -3,6 +3,8 @@ package astro.api.collector.dao;
 import astro.api.collector.domain.AstroApiInfoDomain;
 import astro.api.collector.domain.AstroRuleMetaDomain;
 
+import java.util.Map;
+
 /**
  * @author oringnam
  * @since 2018. 12. 8.
@@ -18,17 +20,23 @@ public class AstroCrallwerDaoImpl implements AstroCrallwerDao {
 
     @Override
     public void createTable() {
-        Integer result = dataSourcePool.update("AstroCrallwerMapper.createTable");
+        Integer result = dataSourcePool.update("AstroCrallwerMapper.createTable", null);
     }
 
 
     @Override
     public void dropTable() {
-        Integer result = dataSourcePool.update("AstroCrallwerMapper.dropTable");
+        Integer result = dataSourcePool.update("AstroCrallwerMapper.dropTable", null);
     }
 
     @Override
-    public void insertInitialData() {
+    public void insertInitialTable(Map<String, Object> map) {
+        Integer result = dataSourcePool.update("AstroCrallwerMapper.insertInitialTable", map);
+    }
+
+    @Override
+    public void deleteInitialTable() {
+        Integer result = dataSourcePool.update("AstroCrallwerMapper.deleteInitialTable", null);
 
     }
 
