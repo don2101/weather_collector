@@ -1,4 +1,4 @@
-package unit;
+package unit.astro.api.collector.dao;
 
 import astro.api.collector.dao.AstroCrallwerDao;
 import astro.api.collector.dao.AstroCrallwerDaoImpl;
@@ -15,7 +15,7 @@ import java.util.Map;
  * blog : http://box0830.tistory.com/
  */
 public class AstroCrallwerDaoTest {
-    AstroCrallwerDao astroCrallwerDao;
+    private AstroCrallwerDao astroCrallwerDao;
 
     @Before
     public void daoCreator() {
@@ -46,6 +46,9 @@ public class AstroCrallwerDaoTest {
         astroCrallwerDao.dropTable();
     }
 
+    /**
+     * 테스트용 초기 데이터 넣기 (날씨)
+     */
     @Test
     public void d_insertIntiailTest() {
         Map<String, Object> map = new HashMap<>();
@@ -57,6 +60,9 @@ public class AstroCrallwerDaoTest {
         astroCrallwerDao.insertInitialTable(map);
     }
 
+    /**
+     * 테스트용 초기 데이터 제거 (테이블 전체)
+     */
     @Test
     public void e_deleteInitialTest() {
         astroCrallwerDao.deleteInitialTable();
