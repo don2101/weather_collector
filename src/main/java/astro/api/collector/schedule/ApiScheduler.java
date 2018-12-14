@@ -16,7 +16,7 @@ public class ApiScheduler {
     @Scheduled(cron = " 1 * * * * * ")
     public void weatherSchduler() {
         log.debug("weather schedule start");
-        apiCallContrller.weather();
+//        apiCallContrller.weather();
         log.info("weather schedule fin");
     }
 
