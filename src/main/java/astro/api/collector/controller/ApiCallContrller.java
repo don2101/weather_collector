@@ -81,13 +81,14 @@ public class ApiCallContrller {
 
         Map<String, Object> map = new HashMap<>();
         DateTime dateTime = new DateTime();
-        map.put("regDatetime", dateTime.toString("yyyy-MM-dd hh:mm:ss.SSS"));
+        map.put("regDatetime", dateTime.toString("yyyy-MM-dd HH:mm:ss.SSS"));
         astroCrallwerDao.insertInitialTable(map);
         log.info("# insert initial data");
 
         log.info("================ init api rule db fin !! ================");
         return astroCrallwerDao.toString();
     }
+
     public String transportation() {
         return null;
     }

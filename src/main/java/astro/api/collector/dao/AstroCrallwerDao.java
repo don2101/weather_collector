@@ -43,10 +43,10 @@ public interface AstroCrallwerDao {
     void deleteInitialTable();
 
     // rule_meta 테이블 row 추가
-    void insertRuleMeta(Object... args);
+    void insertRuleMeta(Map<String, Object> map);
 
     // api_info 테이블 row 추가
-    void insertApiInfo(Object... args);
+    void insertApiInfo(Map<String, Object> map);
 
     // rule_meta 테이블 row 제거
     void deleteRuleMeta(String zone, String ruleName);

@@ -38,4 +38,12 @@ CREATE TABLE if not exists astro_crallwer.api_info
         delete from astro_crallwer.api_info;
         delete from astro_crallwer.rule_meta;
     </select>
+
+    <select id="insertRuleMeta" resultType="int">
+        insert into astro_crallwer.rule_meta values (#{ruleName}, #{regDatetime});
+    </select>
+
+    <select id="insertApiInfo" resultType="int">
+        insert into astro_crallwer.api_info values (#{ruleName}, #{apiUrl}, #{apiParameters}, #{apiHasDate}, #{apiDateOffset});
+    </select>
 </mapper>

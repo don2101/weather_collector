@@ -43,13 +43,13 @@ public class AstroCrallwerDaoImpl implements AstroCrallwerDao {
     }
 
     @Override
-    public void insertRuleMeta(Object... args) {
-
+    public void insertRuleMeta(Map<String, Object> map) {
+        Integer result = dataSourcePool.update("AstroCrallwerMapper.insertRuleMeta", map);
     }
 
     @Override
-    public void insertApiInfo(Object... args) {
-
+    public void insertApiInfo(Map<String, Object> map) {
+        Integer result = dataSourcePool.update("AstroCrallwerMapper.insertApiInfo", map);
     }
 
     @Override

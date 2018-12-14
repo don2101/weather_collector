@@ -55,7 +55,7 @@ public class AstroCrallwerDaoTest {
 
         DateTime dateTime = new DateTime();
 
-        map.put("regDatetime", dateTime.toString("yyyy-MM-dd hh:mm:ss.SSS"));
+        map.put("regDatetime", dateTime.toString("yyyy-MM-dd HH:mm:ss.SSS"));
 
         astroCrallwerDao.insertInitialTable(map);
     }
@@ -66,5 +66,34 @@ public class AstroCrallwerDaoTest {
     @Test
     public void e_deleteInitialTest() {
         astroCrallwerDao.deleteInitialTable();
+    }
+
+    /**
+     * rule_meta table insert
+     */
+    @Test
+    public void f_insertRuleMetaTest() {
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("ruleName", "api_weather");
+
+        DateTime dateTime = new DateTime();
+        map.put("regDatetime", dateTime.toString("yyyy-MM-dd HH:mm:ss.SSS"));
+
+        astroCrallwerDao.insertRuleMeta(map);
+    }
+
+    @Test
+    public void g_insertApiInfoTest() {
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("ruleName", "api_weather");
+        map.put("apiUrl","http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=%s");
+        map.put("apiParameters", "1144071000");
+        map.put("apiHasDate", false);
+        map.put("apiDateOffset", null);
+
+
+        astroCrallwerDao.insertApiInfo(map);
     }
 }
