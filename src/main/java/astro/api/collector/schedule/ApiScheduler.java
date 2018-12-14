@@ -14,14 +14,14 @@ public class ApiScheduler {
     @Autowired
     private ApiCallContrller apiCallContrller;
 
-    @Scheduled(cron = " 1 * * * * * ")
+//    @Scheduled(cron = " 1 * * * * * ")
     public void weatherSchduler() {
         log.debug("weather schedule start");
 //        apiCallContrller.weather();
         log.info("weather schedule fin");
     }
 
-    @Scheduled(initialDelay = 60000, fixedDelay = 60000)
+//    @Scheduled(initialDelay = 60000, fixedDelay = 60000)
     public void otherTest() {
         log.debug("schedule test2");
     }
