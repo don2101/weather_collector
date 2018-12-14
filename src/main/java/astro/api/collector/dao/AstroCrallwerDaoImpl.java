@@ -2,6 +2,7 @@ package astro.api.collector.dao;
 
 import astro.api.collector.domain.AstroApiInfoDomain;
 import astro.api.collector.domain.AstroRuleMetaDomain;
+import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import java.util.Map;
  * @since 2018. 12. 8.
  * blog : http://box0830.tistory.com/
  */
+@Service
 public class AstroCrallwerDaoImpl implements AstroCrallwerDao {
     private AstroDataSourcePool dataSourcePool = new AstroDataSourcePool();
 

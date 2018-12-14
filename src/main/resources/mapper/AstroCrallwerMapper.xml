@@ -7,14 +7,14 @@
     </select>
 
     <select id="createTable" resultType="int">
-CREATE TABLE astro_crallwer.rule_meta
+CREATE TABLE if not exists astro_crallwer.rule_meta
 (
     rule_name          VARCHAR(45)    NOT NULL    ,
     rule_reg_datetime  DATETIME       NULL        ,
     PRIMARY KEY (rule_name)
 );
 
-CREATE TABLE astro_crallwer.api_info
+CREATE TABLE if not exists astro_crallwer.api_info
 (
     rule_name        VARCHAR(45)     NOT NULL    ,
     api_url          VARCHAR(500)    NULL        ,
@@ -26,7 +26,7 @@ CREATE TABLE astro_crallwer.api_info
     </select>
 
     <select id="dropTable" resultType="int">
-        drop table astro_crallwer.api_info,astro_crallwer.rule_meta;
+        drop table if exists astro_crallwer.api_info,astro_crallwer.rule_meta;
     </select>
 
     <select id="insertInitialTable" resultType="int">
