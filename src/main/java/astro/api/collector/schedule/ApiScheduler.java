@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
+// TODO: 테스트용, 스케쥴 잠시 멈춤
 public class ApiScheduler {
 
     @Autowired
