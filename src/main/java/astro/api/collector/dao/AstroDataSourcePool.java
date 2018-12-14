@@ -64,10 +64,10 @@ public class AstroDataSourcePool {
         dataSource.setTestOnReturn(false);
         dataSource.setValidationQuery("select 1");
         dataSource.setValidationQueryTimeout(60);
-        dataSource.setMinIdle(1);
-        dataSource.setMaxIdle(1);
-        dataSource.setMaxActive(1);
-        dataSource.setInitialSize(1);
+        dataSource.setMinIdle(2);
+        dataSource.setMaxIdle(5);
+        dataSource.setMaxActive(5);
+        dataSource.setInitialSize(2);
         dataSource.setDefaultAutoCommit(true);
         dataSource.setDefaultTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
 
@@ -111,6 +111,7 @@ public class AstroDataSourcePool {
             return dataSource.getConnection();
         } catch (SQLException e) {
             try {
+                log.warn("connection borrow 1 failed : {}", e.getMessage());
                 init();
                 return dataSource.getConnection();
             } catch (SQLException e1) {

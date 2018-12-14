@@ -63,13 +63,12 @@ public class ApiCallContrller {
     }
 
 
-    // TODO: api로 init 할때, 매번 dao 인스턴스 생성함 --> 안그랬으면 좋겠는뎅,,,
     @GetMapping("/init/db")
     public String initDb() {
         log.info("================ astro crallwer db init ================");
 
         astroCrallwerDao.connectionTest();
-        log.info("# connection test success !!");
+        log.info("# connection test success !! {}");
 
         astroCrallwerDao.dropTable();
         log.info("# drop table");
@@ -86,8 +85,7 @@ public class ApiCallContrller {
         astroCrallwerDao.insertInitialTable(map);
         log.info("# insert initial data");
 
-        log.info("### init db fin !! ");
-        log.info("========================================================");
+        log.info("================ init api rule db fin !! ================");
         return astroCrallwerDao.toString();
     }
     public String transportation() {
