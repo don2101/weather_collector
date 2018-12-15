@@ -24,6 +24,9 @@ public class crallwerControllerTest {
         astroCrallwerDao = new AstroCrallwerDaoImpl();
     }
 
+    /**
+     * /init/db
+     */
     @Test
     public void initDbTest() {
         log.info("================ astro crallwer db init ================");

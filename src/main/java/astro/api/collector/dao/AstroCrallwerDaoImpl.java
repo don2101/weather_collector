@@ -17,45 +17,45 @@ public class AstroCrallwerDaoImpl implements AstroCrallwerDao {
     private AstroDataSourcePool dataSourcePool = new AstroDataSourcePool();
 
     @Override
-    public void connectionTest() {
-        dataSourcePool.select("AstroCrallwerMapper.connectionTest",null);
+    public <T> List<? extends T> connectionTest() {
+        return dataSourcePool.select("AstroCrallwerMapper.connectionTest", null);
     }
 
     @Override
-    public void createTable() {
-        Integer result = dataSourcePool.update("AstroCrallwerMapper.createTable", null);
+    public Integer createTable() {
+        return dataSourcePool.update("AstroCrallwerMapper.createTable", null);
     }
 
 
     @Override
-    public void dropTable() {
-        Integer result = dataSourcePool.update("AstroCrallwerMapper.dropTable", null);
+    public Integer dropTable() {
+        return dataSourcePool.update("AstroCrallwerMapper.dropTable", null);
     }
 
     @Override
-    public void insertInitialTable(Map<String, Object> map) {
-        Integer result = dataSourcePool.update("AstroCrallwerMapper.insertInitialTable", map);
+    public Integer insertInitialTable(Map<String, Object> map) {
+        return dataSourcePool.update("AstroCrallwerMapper.insertInitialTable", map);
     }
 
     @Override
-    public void deleteInitialTable() {
-        Integer result = dataSourcePool.update("AstroCrallwerMapper.deleteInitialTable", null);
+    public Integer deleteInitialTable() {
+        return dataSourcePool.update("AstroCrallwerMapper.deleteInitialTable", null);
 
     }
 
     @Override
-    public void insertRuleMeta(Map<String, Object> map) {
-        Integer result = dataSourcePool.update("AstroCrallwerMapper.insertRuleMeta", map);
+    public Integer insertRuleMeta(Map<String, Object> map) {
+        return dataSourcePool.update("AstroCrallwerMapper.insertRuleMeta", map);
     }
 
     @Override
-    public void insertApiInfo(Map<String, Object> map) {
-        Integer result = dataSourcePool.update("AstroCrallwerMapper.insertApiInfo", map);
+    public Integer insertApiInfo(Map<String, Object> map) {
+        return dataSourcePool.update("AstroCrallwerMapper.insertApiInfo", map);
     }
 
     @Override
-    public void deleteTableData(Map<String, Object> map) {
-        Integer result = dataSourcePool.update("AstroCrallwerMapper.deleteTableData", map);
+    public Integer deleteTableData(Map<String, Object> map) {
+        return dataSourcePool.update("AstroCrallwerMapper.deleteTableData", map);
     }
 
 

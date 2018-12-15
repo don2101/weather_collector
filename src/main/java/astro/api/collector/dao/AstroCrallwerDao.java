@@ -29,28 +29,28 @@ public interface AstroCrallwerDao {
      * DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
      */
     // connetion test
-    void connectionTest();
+    <T> List<? extends T> connectionTest();
 
     // 초기 환경 세팅용
-    void createTable();
+    Integer createTable();
 
     // Table drop
-    void dropTable();
+    Integer dropTable();
 
     // 초기 환경 세팅용
-    void insertInitialTable(Map<String, Object> map);
+    Integer insertInitialTable(Map<String, Object> map);
 
     // db table 초기화용
-    void deleteInitialTable();
+    Integer deleteInitialTable();
 
     // rule_meta 테이블 row 추가
-    void insertRuleMeta(Map<String, Object> map);
+    Integer insertRuleMeta(Map<String, Object> map);
 
     // api_info 테이블 row 추가
-    void insertApiInfo(Map<String, Object> map);
+    Integer insertApiInfo(Map<String, Object> map);
 
     // rule_meta 테이블 row 제거
-    void deleteTableData(Map<String, Object> map);
+    Integer deleteTableData(Map<String, Object> map);
 
 
     /**
