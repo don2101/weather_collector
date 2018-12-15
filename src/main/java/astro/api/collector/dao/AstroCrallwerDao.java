@@ -3,6 +3,7 @@ package astro.api.collector.dao;
 import astro.api.collector.domain.AstroApiInfoDomain;
 import astro.api.collector.domain.AstroRuleMetaDomain;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -56,8 +57,8 @@ public interface AstroCrallwerDao {
      * Schedule 동작 시 필요한 것
      */
     // rule_meta table select
-    AstroRuleMetaDomain selectRuleMeta(String zone);
+    List<AstroRuleMetaDomain> selectRuleMeta();
 
     // api_info table select
-    AstroApiInfoDomain selectApiInfo(String ruleName);
+    List<AstroApiInfoDomain> selectApiInfo();
 }

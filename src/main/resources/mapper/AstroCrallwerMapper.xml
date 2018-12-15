@@ -47,8 +47,15 @@ CREATE TABLE if not exists astro_crallwer.api_info
         insert into astro_crallwer.api_info values (#{ruleName}, #{apiUrl}, #{apiParameters}, #{apiHasDate}, #{apiDateOffset});
     </select>
 
-    <select id="deleteTableData" resultType="int">
+    <select id="deleteTableData" parameterType="hashmap" resultType="int">
         delete from ${tableName};
     </select>
 
+    <select id="selectRuleMeta" resultType="astro.api.collector.domain.AstroRuleMetaDomain">
+        select * from astro_crallwer.rule_meta;
+    </select>
+
+    <select id="selectApiInfo" resultType="astro.api.collector.domain.AstroApiInfoDomain">
+        select * from astro_crallwer.api_info;
+    </select>
 </mapper>

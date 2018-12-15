@@ -4,6 +4,7 @@ import astro.api.collector.domain.AstroApiInfoDomain;
 import astro.api.collector.domain.AstroRuleMetaDomain;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -59,12 +60,12 @@ public class AstroCrallwerDaoImpl implements AstroCrallwerDao {
 
 
     @Override
-    public AstroRuleMetaDomain selectRuleMeta(String zone) {
-        return null;
+    public List<AstroRuleMetaDomain> selectRuleMeta() {
+        return dataSourcePool.select("AstroCrallwerMapper.selectRuleMeta", null);
     }
 
     @Override
-    public AstroApiInfoDomain selectApiInfo(String ruleName) {
-        return null;
+    public List<AstroApiInfoDomain> selectApiInfo() {
+        return dataSourcePool.select("AstroCrallwerMapper.selectApiInfo", null);
     }
 }

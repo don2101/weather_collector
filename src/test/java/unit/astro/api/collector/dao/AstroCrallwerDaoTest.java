@@ -2,11 +2,13 @@ package unit.astro.api.collector.dao;
 
 import astro.api.collector.dao.AstroCrallwerDao;
 import astro.api.collector.dao.AstroCrallwerDaoImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,6 +16,7 @@ import java.util.Map;
  * @since 2018. 12. 9.
  * blog : http://box0830.tistory.com/
  */
+@Slf4j
 public class AstroCrallwerDaoTest {
     private AstroCrallwerDao astroCrallwerDao;
 
@@ -103,5 +106,17 @@ public class AstroCrallwerDaoTest {
         map.put("tableName", "astro_crallwer.api_info");
 
         astroCrallwerDao.deleteTableData(map);
+    }
+
+    @Test
+    public void i_selectRuleMetaTest() {
+        List<?> result = astroCrallwerDao.selectRuleMeta();
+        log.info("result : {}", result.toString());
+    }
+
+    @Test
+    public void j_selectApiInfoTest() {
+        List<?> result = astroCrallwerDao.selectApiInfo();
+        log.info("result : {}", result.toString());
     }
 }

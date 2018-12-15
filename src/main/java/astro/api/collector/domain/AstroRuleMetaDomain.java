@@ -11,7 +11,6 @@ import java.util.Date;
  */
 @Data
 public class AstroRuleMetaDomain {
-    private String zone;
     private String ruleName;
     private Date ruleRegDatetime;
 }

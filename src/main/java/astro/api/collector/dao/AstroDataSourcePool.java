@@ -134,6 +134,8 @@ public class AstroDataSourcePool {
     public Integer update(String mapperName, Object param) {
         SqlSession sqlSession = getSqlSession();
         Integer result = sqlSession.update(mapperName, param);
+        sqlSession.close();
+
         return result;
     }
 }
