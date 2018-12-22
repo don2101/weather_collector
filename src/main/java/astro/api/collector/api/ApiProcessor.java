@@ -1,8 +1,11 @@
 package astro.api.collector.api;
 
 import astro.api.collector.common.HttpManager;
+import astro.api.collector.domain.AstroApiInfoDomain;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -16,9 +19,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.StringReader;
 
+// TODO: 전체적인 동작 방식 고려할 필요 있음 --> 어떻게 uri 만들고 동작하게 할 것인가?
+@Slf4j
 public class ApiProcessor implements ApiInterface {
-    @Override
-    public String request(String requestURL) {
+    private String request(String requestURL) {
         try {
             HttpResponse<String> response = HttpManager.getResponse(requestURL);
 
@@ -29,8 +33,7 @@ public class ApiProcessor implements ApiInterface {
         }
     }
 
-    @Override
-    public String parse(String responseBody) {
+    private String parse(String responseBody) {
         InputSource inputSource = new InputSource(new StringReader(responseBody));
         JSONObject jsonObject = new JSONObject();
 
@@ -41,35 +44,18 @@ public class ApiProcessor implements ApiInterface {
 
             NodeList dataList = document.getElementsByTagName("data");
 
-            /* 전체 데이터 전송
-            for(int i = 0; i < DataList.getLength(); ++i) {
-                Node data = dataList.item(i);
-                NodeList weatherDataList = data.getChildNodes();
-
-                for(int j = 0; j < weatherDataList.getLength(); ++j) {
-                    Node weatherData = weatherDataList.item(j);
-                    message += weatherData.getTextContent();
-                    message += "_";
-                }
-            }*/
-
             Node data = dataList.item(0);
             NodeList weatherDataList = data.getChildNodes();
 
-            for(int i = 0; i < weatherDataList.getLength(); ++i) {
+            for (int i = 0; i < weatherDataList.getLength(); ++i) {
                 Node weatherData = weatherDataList.item(i);
                 jsonObject.put(weatherData.getNodeName(), weatherData.getTextContent());
             }
 
 
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
-
 
         return jsonObject.toString(1);
     }

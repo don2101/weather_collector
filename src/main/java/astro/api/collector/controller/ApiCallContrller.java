@@ -2,8 +2,10 @@ package astro.api.collector.controller;
 
 import astro.api.collector.api.ApiConfig;
 import astro.api.collector.api.ApiProcessor;
+import astro.api.collector.api.UriCreator;
 import astro.api.collector.common.GrpcSender;
 import astro.api.collector.dao.AstroCrallwerDaoImpl;
+import astro.api.collector.domain.AstroApiInfoDomain;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -32,7 +36,7 @@ public class ApiCallContrller {
     public String weather() {
         String topic = "weather";
 
-        apiConfig.loadProperties(topic+".properties");
+        apiConfig.loadProperties(topic + ".properties");
 
         String url = apiConfig.makeUrl()
                               .concat(apiConfig.get("tag.name"))
@@ -48,13 +52,34 @@ public class ApiCallContrller {
         return message;
     }
 
+    //TODO: 실행 인터페이스를 생성하여 밖으로 빼낼 것
     @GetMapping("/api/{rule}")
     public String callApi(@PathVariable String rule) {
-        String topic = rule;
+        Map<String, Object> input = new HashMap<>();
+        input.put("ruleName", rule);
 
+        List<AstroApiInfoDomain> list = astroCrallwerDao.selectApiInfo(input);
 
-        String message = rule;
+        if (list.size() == 0) {
+            log.warn("query size was zero !! please check the rule name [{}] !!", rule);
+            return "query size was zero !!";
+        }
 
+        AstroApiInfoDomain apiInfoDomain = list.get(0);
+
+        log.debug("# domain : {}", apiInfoDomain.toString());
+
+        UriCreator creator = new UriCreator(apiInfoDomain);
+
+        ArrayList<String> uris = creator.getUris();
+
+        for (String uri : uris) {
+            String body = apiProcessor.call(uri);
+            sender.send(rule, body);
+            log.debug("# {} rule send message success : {}", rule, body);
+        }
+
+        String message = String.format("[%s] rule process fin !!", rule);
 
         return message;
     }
