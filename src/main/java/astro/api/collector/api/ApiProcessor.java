@@ -1,10 +1,8 @@
 package astro.api.collector.api;
 
-import astro.api.collector.common.HttpManager;
-import astro.api.collector.domain.AstroApiInfoDomain;
+import astro.api.collector.common.util.HttpManager;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 import org.w3c.dom.Document;

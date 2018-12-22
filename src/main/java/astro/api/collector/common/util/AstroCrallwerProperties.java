@@ -1,6 +1,6 @@
-package astro.api.collector.common;
+package astro.api.collector.common.util;
 
-import astro.api.collector.api.ApiConfig;
+import astro.api.collector.deprecated.ApiConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 
@@ -27,7 +27,7 @@ public class AstroCrallwerProperties {
 
     @PostConstruct
     public void loadProperties() {
-        String propertyFile = "api-crallwer.properties";
+        String propertyFile = "properties/api-crallwer.properties";
 
         properties.clear();
 

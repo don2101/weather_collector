@@ -1,4 +1,4 @@
-package astro.api.collector.common;
+package astro.api.collector.common.util;
 
 import astro.grpc.clientsdk.ClientSdk;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package astro.api.collector.common;
+package astro.api.collector.common.util;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;

@@ -1,6 +1,6 @@
 package astro.api.collector.dao;
 
-import astro.api.collector.common.AstroCrallwerProperties;
+import astro.api.collector.common.util.AstroCrallwerProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.ExecutorType;

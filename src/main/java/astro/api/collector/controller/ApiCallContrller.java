@@ -1,11 +1,10 @@
 package astro.api.collector.controller;
 
-import astro.api.collector.api.ApiConfig;
 import astro.api.collector.api.ApiProcessor;
 import astro.api.collector.api.UriCreator;
-import astro.api.collector.common.GrpcSender;
+import astro.api.collector.common.util.GrpcSender;
 import astro.api.collector.dao.AstroCrallwerDaoImpl;
-import astro.api.collector.domain.AstroApiInfoDomain;
+import astro.api.collector.common.domain.AstroApiInfoDomain;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,32 +24,10 @@ public class ApiCallContrller {
     @Autowired
     private GrpcSender sender;
 
-    private ApiConfig apiConfig = new ApiConfig();
-
     private ApiProcessor apiProcessor = new ApiProcessor();
 
     @Autowired
     private AstroCrallwerDaoImpl astroCrallwerDao;
-
-    @GetMapping("/weather")
-    public String weather() {
-        String topic = "weather";
-
-        apiConfig.loadProperties(topic + ".properties");
-
-        String url = apiConfig.makeUrl()
-                              .concat(apiConfig.get("tag.name"))
-                              .concat(apiConfig.get("seoul.mapo.yonnam"));
-
-        String message = apiProcessor.call(url);
-
-        log.debug("message check : {}", message);
-
-        // connector 통해서 전송
-        sender.send(topic, message);
-
-        return message;
-    }
 
     //TODO: 실행 인터페이스를 생성하여 밖으로 빼낼 것
     @GetMapping("/api/{rule}")

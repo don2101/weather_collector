@@ -51,11 +51,11 @@ CREATE TABLE if not exists astro_crallwer.api_info
         delete from ${tableName};
     </select>
 
-    <select id="selectRuleMeta" resultType="astro.api.collector.domain.AstroRuleMetaDomain">
+    <select id="selectRuleMeta" resultType="astro.api.collector.common.domain.AstroRuleMetaDomain">
         select * from astro_crallwer.rule_meta;
     </select>
 
-    <select id="selectApiInfo" parameterType="hashmap" resultType="astro.api.collector.domain.AstroApiInfoDomain">
+    <select id="selectApiInfo" parameterType="hashmap" resultType="astro.api.collector.common.domain.AstroApiInfoDomain">
         select * from astro_crallwer.api_info where rule_name=#{ruleName};
     </select>
 </mapper>

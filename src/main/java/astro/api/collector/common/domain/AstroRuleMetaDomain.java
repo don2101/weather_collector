@@ -1,4 +1,4 @@
-package astro.api.collector.domain;
+package astro.api.collector.common.domain;
 
 import lombok.Data;
 

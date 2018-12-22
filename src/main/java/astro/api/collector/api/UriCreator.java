@@ -1,6 +1,6 @@
 package astro.api.collector.api;
 
-import astro.api.collector.domain.AstroApiInfoDomain;
+import astro.api.collector.common.domain.AstroApiInfoDomain;
 import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;

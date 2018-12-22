@@ -1,7 +1,7 @@
 package astro.api.collector.dao;
 
-import astro.api.collector.domain.AstroApiInfoDomain;
-import astro.api.collector.domain.AstroRuleMetaDomain;
+import astro.api.collector.common.domain.AstroApiInfoDomain;
+import astro.api.collector.common.domain.AstroRuleMetaDomain;
 
 import java.util.List;
 import java.util.Map;
