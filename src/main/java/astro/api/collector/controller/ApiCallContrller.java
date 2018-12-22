@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -26,21 +27,6 @@ public class ApiCallContrller {
 
     @Autowired
     private AstroCrallwerDaoImpl astroCrallwerDao;
-
-
-/*    @GetMapping("/")
-    public String helloWorld() {
-        log.info("call start");
-        String topic = "weather";
-
-        WeatherApi weather = new WeatherApi();
-        String message = weather.call();
-
-        // connector 통해서 전송
-        sender.send(topic, message);
-
-        return message;
-    }*/
 
     @GetMapping("/weather")
     public String weather() {
@@ -62,6 +48,16 @@ public class ApiCallContrller {
         return message;
     }
 
+    @GetMapping("/api/{rule}")
+    public String callApi(@PathVariable String rule) {
+        String topic = rule;
+
+
+        String message = rule;
+
+
+        return message;
+    }
 
     @GetMapping("/init/db")
     public String initDb() {

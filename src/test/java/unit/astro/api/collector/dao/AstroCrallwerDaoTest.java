@@ -116,7 +116,10 @@ public class AstroCrallwerDaoTest {
 
     @Test
     public void j_selectApiInfoTest() {
-        List<?> result = astroCrallwerDao.selectApiInfo();
+        Map<String, Object> map = new HashMap<>();
+        map.put("ruleName", "api_weather");
+
+        List<?> result = astroCrallwerDao.selectApiInfo(map);
         log.info("result : {}", result.toString());
     }
 }

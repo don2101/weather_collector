@@ -65,7 +65,7 @@ public class AstroCrallwerDaoImpl implements AstroCrallwerDao {
     }
 
     @Override
-    public List<AstroApiInfoDomain> selectApiInfo() {
-        return dataSourcePool.select("AstroCrallwerMapper.selectApiInfo", null);
+    public List<AstroApiInfoDomain> selectApiInfo(Map<String, Object> map) {
+        return dataSourcePool.select("AstroCrallwerMapper.selectApiInfo", map);
     }
 }

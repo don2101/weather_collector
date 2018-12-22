@@ -55,7 +55,7 @@ CREATE TABLE if not exists astro_crallwer.api_info
         select * from astro_crallwer.rule_meta;
     </select>
 
-    <select id="selectApiInfo" resultType="astro.api.collector.domain.AstroApiInfoDomain">
-        select * from astro_crallwer.api_info;
+    <select id="selectApiInfo" parameterType="hashmap" resultType="astro.api.collector.domain.AstroApiInfoDomain">
+        select * from astro_crallwer.api_info where rule_name=#{ruleName};
     </select>
 </mapper>

@@ -60,5 +60,5 @@ public interface AstroCrallwerDao {
     List<AstroRuleMetaDomain> selectRuleMeta();
 
     // api_info table select
-    List<AstroApiInfoDomain> selectApiInfo();
+    List<AstroApiInfoDomain> selectApiInfo(Map<String, Object> map);
 }
