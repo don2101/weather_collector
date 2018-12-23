@@ -24,7 +24,8 @@ public class ApiCallContrller {
     @Autowired
     private GrpcSender sender;
 
-    private ApiProcessor apiProcessor = new ApiProcessor();
+    @Autowired
+    private ApiProcessor apiProcessor;
 
     @Autowired
     private AstroCrallwerDaoImpl astroCrallwerDao;

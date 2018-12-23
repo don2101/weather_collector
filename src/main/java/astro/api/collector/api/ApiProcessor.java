@@ -5,6 +5,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
+import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -19,6 +20,7 @@ import java.io.StringReader;
 
 // TODO: 전체적인 동작 방식 고려할 필요 있음 --> 어떻게 uri 만들고 동작하게 할 것인가?
 @Slf4j
+@Service
 public class ApiProcessor implements ApiInterface {
     private String request(String requestURL) {
         try {

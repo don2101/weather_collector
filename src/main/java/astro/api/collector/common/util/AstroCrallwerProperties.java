@@ -1,6 +1,5 @@
 package astro.api.collector.common.util;
 
-import astro.api.collector.deprecated.ApiConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,9 +12,8 @@ import java.util.Properties;
  * @author oringnam
  * @since 2018. 12. 9.
  * blog : http://box0830.tistory.com/
- * <p>
- * 나중에 Astro.Common. 프로젝트 개선 후, 거기서 가져다 쓸 것 (상속이 좋을 것 같음)
  */
+// TODO: Astro.Common 프로젝트에서 상속 받아 쓸 수 있도록 만듭시다.
 @Slf4j
 @Configuration
 public class AstroCrallwerProperties {
@@ -31,8 +29,8 @@ public class AstroCrallwerProperties {
 
         properties.clear();
 
-        InputStream inputStream = ApiConfig.class.getClassLoader()
-                                                 .getResourceAsStream(propertyFile);
+        InputStream inputStream = AstroCrallwerProperties.class.getClassLoader()
+                                                               .getResourceAsStream(propertyFile);
 
         try {
             properties.load(inputStream);
