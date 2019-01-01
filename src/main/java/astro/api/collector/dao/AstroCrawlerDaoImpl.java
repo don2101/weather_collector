@@ -13,7 +13,7 @@ import java.util.Map;
  * blog : http://box0830.tistory.com/
  */
 @Service
-public class AstroCrallwerDaoImpl implements AstroCrallwerDao {
+public class AstroCrawlerDaoImpl implements AstroCrawlerDao {
     private AstroDataSourcePool dataSourcePool = new AstroDataSourcePool();
 
     @Override

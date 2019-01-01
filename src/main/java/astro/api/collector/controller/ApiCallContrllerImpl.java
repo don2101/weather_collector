@@ -3,7 +3,7 @@ package astro.api.collector.controller;
 import astro.api.collector.api.ApiProcessor;
 import astro.api.collector.api.UriCreator;
 import astro.api.collector.common.util.GrpcSender;
-import astro.api.collector.dao.AstroCrallwerDaoImpl;
+import astro.api.collector.dao.AstroCrawlerDaoImpl;
 import astro.api.collector.common.domain.AstroApiInfoDomain;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
@@ -19,7 +19,7 @@ import java.util.Map;
 
 @RestController
 @Slf4j
-public class ApiCallContrller {
+public class ApiCallContrllerImpl {
 
     @Autowired
     private GrpcSender sender;
@@ -28,7 +28,7 @@ public class ApiCallContrller {
     private ApiProcessor apiProcessor;
 
     @Autowired
-    private AstroCrallwerDaoImpl astroCrallwerDao;
+    private AstroCrawlerDaoImpl astroCrallwerDao;
 
     //TODO: 실행 인터페이스를 생성하여 밖으로 빼낼 것
     @GetMapping("/api/{rule}")

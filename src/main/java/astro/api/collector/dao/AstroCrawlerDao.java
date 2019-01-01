@@ -18,7 +18,7 @@ import java.util.Map;
  * 걍 Api의 정보만 가지게 하자
  * 그리고 서버의 기본적인 설정 정보는 프로퍼티로 떨구는게 맞을 것 같음 (서버 구동단계에서 필요하니까)
  */
-public interface AstroCrallwerDao {
+public interface AstroCrawlerDao {
     /**
      * 운영 편의성 개선
      * - 환경 세팅

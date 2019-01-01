@@ -13,14 +13,22 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.StringReader;
 
+/**
+ * @author don2101
+ * @since 2019. 01. 01
+ */
+
 public class ApiParser {
     String rule;
     String apiUrl;
 
     public static String parse(String responseBody, String rule) {
-        String result;
+        String result = null;
 
-        result = weatherParse(responseBody);
+        if(rule == "weather") {
+            result = weatherParse(responseBody);
+        }
+
 
         return result;
     }

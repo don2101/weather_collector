@@ -1,7 +1,7 @@
 package unit.astro.api.collector.dao;
 
-import astro.api.collector.dao.AstroCrallwerDao;
-import astro.api.collector.dao.AstroCrallwerDaoImpl;
+import astro.api.collector.dao.AstroCrawlerDao;
+import astro.api.collector.dao.AstroCrawlerDaoImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.junit.Before;
@@ -17,12 +17,12 @@ import java.util.Map;
  * blog : http://box0830.tistory.com/
  */
 @Slf4j
-public class AstroCrallwerDaoTest {
-    private AstroCrallwerDao astroCrallwerDao;
+public class AstroCrawlerDaoTest {
+    private AstroCrawlerDao astroCrawlerDao;
 
     @Before
     public void daoCreator() {
-        astroCrallwerDao = new AstroCrallwerDaoImpl();
+        astroCrawlerDao = new AstroCrawlerDaoImpl();
     }
 
     /**
@@ -30,7 +30,7 @@ public class AstroCrallwerDaoTest {
      */
     @Test
     public void a_connectionTest() {
-        astroCrallwerDao.connectionTest();
+        astroCrawlerDao.connectionTest();
     }
 
     /**
@@ -38,7 +38,7 @@ public class AstroCrallwerDaoTest {
      */
     @Test
     public void b_createTest() {
-        astroCrallwerDao.createTable();
+        astroCrawlerDao.createTable();
     }
 
     /**
@@ -46,7 +46,7 @@ public class AstroCrallwerDaoTest {
      */
     @Test
     public void c_dropTableTest() {
-        astroCrallwerDao.dropTable();
+        astroCrawlerDao.dropTable();
     }
 
     /**
@@ -60,7 +60,7 @@ public class AstroCrallwerDaoTest {
 
         map.put("regDatetime", dateTime.toString("yyyy-MM-dd HH:mm:ss.SSS"));
 
-        astroCrallwerDao.insertInitialTable(map);
+        astroCrawlerDao.insertInitialTable(map);
     }
 
     /**
@@ -68,7 +68,7 @@ public class AstroCrallwerDaoTest {
      */
     @Test
     public void e_deleteInitialTest() {
-        astroCrallwerDao.deleteInitialTable();
+        astroCrawlerDao.deleteInitialTable();
     }
 
     /**
@@ -83,7 +83,7 @@ public class AstroCrallwerDaoTest {
         DateTime dateTime = new DateTime();
         map.put("regDatetime", dateTime.toString("yyyy-MM-dd HH:mm:ss.SSS"));
 
-        astroCrallwerDao.insertRuleMeta(map);
+        astroCrawlerDao.insertRuleMeta(map);
     }
 
     @Test
@@ -97,7 +97,7 @@ public class AstroCrallwerDaoTest {
         map.put("apiDateOffset", null);
 
 
-        astroCrallwerDao.insertApiInfo(map);
+        astroCrawlerDao.insertApiInfo(map);
     }
 
     @Test
@@ -105,12 +105,12 @@ public class AstroCrallwerDaoTest {
         Map<String, Object> map = new HashMap<>();
         map.put("tableName", "astro_crallwer.api_info");
 
-        astroCrallwerDao.deleteTableData(map);
+        astroCrawlerDao.deleteTableData(map);
     }
 
     @Test
     public void i_selectRuleMetaTest() {
-        List<?> result = astroCrallwerDao.selectRuleMeta();
+        List<?> result = astroCrawlerDao.selectRuleMeta();
         log.info("result : {}", result.toString());
     }
 
@@ -119,7 +119,7 @@ public class AstroCrallwerDaoTest {
         Map<String, Object> map = new HashMap<>();
         map.put("ruleName", "api_weather");
 
-        List<?> result = astroCrallwerDao.selectApiInfo(map);
+        List<?> result = astroCrawlerDao.selectApiInfo(map);
         log.info("result : {}", result.toString());
     }
 }

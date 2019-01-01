@@ -5,5 +5,5 @@ package astro.api.collector.controller;
  * @since 2018. 12. 22.
  * blog : http://box0830.tistory.com/
  */
-public interface ApiCrallwer {
+public interface ApiCrawler {
 }

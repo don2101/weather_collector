@@ -1,6 +1,6 @@
 package astro.api.collector.dao;
 
-import astro.api.collector.common.util.AstroCrallwerProperties;
+import astro.api.collector.common.util.AstroCrawlerProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.ExecutorType;
@@ -33,12 +33,12 @@ public class AstroDataSourcePool {
     private int timeout = 600000;
 
     public AstroDataSourcePool() {
-        AstroCrallwerProperties astroCrallwerProperties = new AstroCrallwerProperties();
+        AstroCrawlerProperties astroCrawlerProperties = new AstroCrawlerProperties();
 
-        driverClassName = astroCrallwerProperties.getProperty("astro.api.crallwer.driverClassName");
-        url = astroCrallwerProperties.getProperty("astro.api.crallwer.url");
-        id = astroCrallwerProperties.getProperty("astro.api.crallwer.id");
-        pw = astroCrallwerProperties.getProperty("astro.api.crallwer.pw");
+        driverClassName = astroCrawlerProperties.getProperty("astro.api.crallwer.driverClassName");
+        url = astroCrawlerProperties.getProperty("astro.api.crallwer.url");
+        id = astroCrawlerProperties.getProperty("astro.api.crallwer.id");
+        pw = astroCrawlerProperties.getProperty("astro.api.crallwer.pw");
 
         init();
     }

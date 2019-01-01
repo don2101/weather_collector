@@ -16,10 +16,10 @@ import java.util.Properties;
 // TODO: Astro.Common 프로젝트에서 상속 받아 쓸 수 있도록 만듭시다.
 @Slf4j
 @Configuration
-public class AstroCrallwerProperties {
+public class AstroCrawlerProperties {
     private Properties properties = new Properties();
 
-    public AstroCrallwerProperties() {
+    public AstroCrawlerProperties() {
         loadProperties();
     }
 
@@ -29,8 +29,8 @@ public class AstroCrallwerProperties {
 
         properties.clear();
 
-        InputStream inputStream = AstroCrallwerProperties.class.getClassLoader()
-                                                               .getResourceAsStream(propertyFile);
+        InputStream inputStream = AstroCrawlerProperties.class.getClassLoader()
+                                                              .getResourceAsStream(propertyFile);
 
         try {
             properties.load(inputStream);
