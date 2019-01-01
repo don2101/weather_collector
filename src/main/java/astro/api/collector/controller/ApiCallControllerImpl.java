@@ -19,7 +19,7 @@ import java.util.Map;
 
 @RestController
 @Slf4j
-public class ApiCallContrllerImpl {
+public class ApiCallControllerImpl implements ApiCallController{
 
     @Autowired
     private GrpcSender sender;
@@ -31,7 +31,6 @@ public class ApiCallContrllerImpl {
     private AstroCrawlerDaoImpl astroCrallwerDao;
 
     //TODO: 실행 인터페이스를 생성하여 밖으로 빼낼 것
-    @GetMapping("/api/{rule}")
     public String callApi(@PathVariable String rule) {
         Map<String, Object> input = new HashMap<>();
         input.put("ruleName", rule);
@@ -62,7 +61,6 @@ public class ApiCallContrllerImpl {
         return message;
     }
 
-    @GetMapping("/init/db")
     public String initDb() {
         log.info("================ astro crallwer db init ================");
 

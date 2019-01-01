@@ -1,5 +1,6 @@
 package astro.api.collector.api;
 
+import lombok.extern.log4j.Log4j2;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -18,6 +19,7 @@ import java.io.StringReader;
  * @since 2019. 01. 01
  */
 
+@Log4j2
 public class ApiParser {
     String rule;
     String apiUrl;
@@ -25,9 +27,10 @@ public class ApiParser {
     public static String parse(String responseBody, String rule) {
         String result = null;
 
-        if(rule == "weather") {
-            result = weatherParse(responseBody);
-        }
+
+        result = weatherParse(responseBody);
+        log.info(result);
+        log.info(rule);
 
 
         return result;
