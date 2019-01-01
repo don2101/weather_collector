@@ -52,7 +52,7 @@ public class ApiCallContrller {
         ArrayList<String> uris = creator.getUris();
 
         for (String uri : uris) {
-            String body = apiProcessor.call(uri);
+            String body = apiProcessor.call(uri, rule);
             sender.send(rule, body);
             log.debug("# {} rule send message success : {}", rule, body);
         }
