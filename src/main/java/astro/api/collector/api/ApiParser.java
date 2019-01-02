@@ -19,7 +19,6 @@ import java.io.StringReader;
  * @since 2019. 01. 01
  */
 
-@Log4j2
 public class ApiParser {
     String rule;
     String apiUrl;
@@ -29,9 +28,6 @@ public class ApiParser {
 
 
         result = weatherParse(responseBody);
-        log.info(result);
-        log.info(rule);
-
 
         return result;
     }
