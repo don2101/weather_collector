@@ -1,6 +1,7 @@
 package astro.api.collector.common.util;
 
 import astro.grpc.clientsdk.ClientSdk;
+import astro.grpc.clientsdk.ClientSdkImpl;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +12,15 @@ public class GrpcSender {
 
 
     public GrpcSender() {
-        clientSdk = new ClientSdk.ClientSdkBuilder().setHost("localhost")
-                                                    .setPort(8082)
-                                                    .build();
+        clientSdk = ClientSdkImpl.builder()
+                                 .host("localhost")
+                                 .port(8082)
+                                 .build();
+        ((ClientSdkImpl) clientSdk).connect();
     }
+
+
+
 
     public void send(String topic, String message) {
         clientSdk.send(topic, message);

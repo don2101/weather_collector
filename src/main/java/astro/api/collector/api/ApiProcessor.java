@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 
 // TODO: 전체적인 동작 방식 고려할 필요 있음 --> 어떻게 uri 만들고 동작하게 할 것인가?
+// TODO: Json 파싱 test 해볼것, Xml 파싱도 좀 더 최적화 할 수 있는지 생각
 @Slf4j
 @Service
 public class ApiProcessor implements ApiInterface {
